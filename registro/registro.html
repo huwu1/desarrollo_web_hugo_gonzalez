@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro</title>
+  <link rel="stylesheet" href="estilos_registro.css">
+</head>
+
+<body>
+  <h1> Registro de usuario </h1>
+
+    <form id = form-registro>
+
+      <div>
+        <label for nombre-usuario> Nombre y apellido:</label>
+        <input type="text" id="nombre-usuario" placeholder="ej: Juan Pérez">
+        <div class="error" id="error-nombre"> Debes ingresar un nombre válido</div>
+      </div>
+      <br>
+
+      <div>
+        <label for rut-usuario> RUT:</label>
+        <input type="text" id="rut-usuario" placeholder="formato 12.345.678-9">
+        <div class="error" id="error-rut"> Debes ingresar un RUT válido</div>
+      </div>
+      <br>
+
+      <!-- input type 'email' como primera línea de verificación -->
+      <div>
+        <label for correo-usuario> Correo:</label>
+        <input type="email" id="correo-usuario">
+        <div class="error" id="error-correo"> Debes ingresar un correo válido</div>
+      </div>
+      <br>
+
+      <label for tipo-usuario> Cargo u ocupación:</label>
+      <select id="tipo-usuario">
+        <option value=""> -- Seleccione --</option>
+        <option value="estudiante"> Estudiante </option>
+        <option value="profesor"> Profesor </option>
+        <option value="funcionario"> Funcionario </option>
+      </select>
+      <div class="error" id="error-tipo-usuario"> Debe seleccionar un tipo</div>
+      <br>
+      
+      <div id="bloque-funcionarios">
+        <label for tipo-funcionario> Tipo de funcionario:</label>
+        <select id="tipo-funcionario">
+          <option value=""> -- Seleccione --</option>
+          <option value="aseo"> Aseo </option>
+          <option value="mantención"> Mantención </option>
+          <option value="logistica"> Logística </option>
+          <option value="administracion"> Administración </option>
+        </select>
+        <div class="error" id="error-tipo-funcionario"> Debe seleccionar un tipo</div>
+      </div>
+      <br>
+
+      <button type="submit"> Registrarse</button>
+
+      <hr>
+
+  </form>
+
+  <script src="script_registro.js"></script>  
+  
+</body>
+</html>

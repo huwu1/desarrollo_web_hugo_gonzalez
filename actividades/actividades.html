@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Actividades</title>
+  <link rel="stylesheet" href="estilos_actividades.css">
+</head>
+<body>
+  <h1> Registro de actividad </h1>
+  
+  <form id="form-actividad">
+    <label for="nombre-actividad">Nombre de la actividad:</label><br>
+    <input type="text" id="nombre-actividad">
+    <div class="error" id="error-nombre">Debe ingresar un nombre (mínimo 3 caracteres).</div>
+    <br>
+
+    <label for="tipo-actividad">Tipo:</label><br>
+    <select id="tipo-actividad">
+      <option value="">-- Seleccione --</option>
+      <option value="deportiva">Deportiva</option>
+      <option value="artistica">Artística</option>
+      <option value="tecnologica">Tecnológica</option>
+      <option value="social">Social</option>
+      <option value="recreativa">Recreativa</option>
+    </select>
+    <div class="error" id="error-tipo">Debe seleccionar un tipo.</div>
+    <br>
+
+
+    <label>Dias donde se realizó la actividad:</label>
+    <label><input type="checkbox" name="dias-actividad" value="lunes"> Lunes </label>
+    <label><input type="checkbox" name="dias-actividad" value="martes"> Martes </label>
+    <label><input type="checkbox" name="dias-actividad" value="miercoles"> Miércoles </label>
+    <label><input type="checkbox" name="dias-actividad" value="jueves"> Jueves </label>
+    <label><input type="checkbox" name="dias-actividad" value="viernes"> Viernes </label>
+    <div class="error" id="error-dias"> Debe seleccionar al menos un día</div>
+
+
+    <label for="horas-actividad">Horas semanales dedicadas:</label><br>
+    <input type="number" id="horas-actividad" min="1">
+    <div class="error" id="error-horas">Debe ingresar un número mayor a 0</div>
+    <br>
+
+
+    <label>Adjunta tu archivo (como máximo uno):</label>
+    <input type="file" id="archivo-actividad">
+    <div class="error" id="error-archivo"> Debe incluir por lo menos un archivo, ya sea foto o video</div>
+
+    <label for="link-actividad">Ingresa un enlace:</label>
+    <input type="url" id="link-actividad">
+    <div class="error" id="error-link">Debe incluir al menos un enlace</div>
+
+
+
+    <button type="submit">Agregar actividad</button>
+
+    <button type="button" id="boton-miembros">Ver miembros registrados</button>
+    <button type="button" id="boton-metricas">Ver gráfica de datos</button>
+
+  </form>
+
+  <hr>
+
+  <div class="contenedor-resultados">
+    <h2>Total de actividades registradas: <span id="total-actividades">0</span></h2>
+    <div id="lista-actividades">
+      </div>
+  </div>
+
+  <script src="script_actividades.js"></script>
+    
+</body>
+</html>

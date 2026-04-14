@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Miembros</title>
+  <link rel="stylesheet" href="estilos_miembros.css">
+</head>
+<body>
+  <h1> Miembros registrados </h1> 
+
+  <select id="orden-nombres">
+    <option>Ordenar nombres</option>
+    <option value="ascendente">A → Z</option>
+    <option value="descendente">Z → A</option>
+  </select>
+
+  <input type="text" id="input-busqueda" onkeyup="barraBusqueda()" placeholder="Buscar coincidencias de RUT..." title="Type in a name"> 
+  
+  <select id="filtro-ocupacion">
+    <option value="todas">Todas las ocupaciones</option>
+    <option value="Profesor/a">Profesor/a</option>
+    <option value="Estudiante">Estudiante</option>
+    <option value="Funcionario">Funcionario</option>
+  </select>
+
+  <table id="tabla-miembros"></table> 
+    
+  <div id="paginas-miembros">
+    <button id="pagina-anterior"> Anterior </button>
+    <button id="pagina-siguiente"> Siguiente </button>
+  </div>
+
+  <script src="script_miembros.js"></script>
+
+</body>
+</html>
