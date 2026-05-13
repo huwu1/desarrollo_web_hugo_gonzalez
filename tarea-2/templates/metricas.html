@@ -9,8 +9,8 @@
 <body>
     <h1>Visualización de Métricas</h1>
     <div class="contenedor-graficos">
-        <img src="grafico1.png" alt="Gráfico de ocupaciones">
-        <img src="grafico2.png" alt="Gráfico de actividades">
+        <img src="{{ url_for('static', filename='uploads/grafico1.png') }}" alt="Gráfico de ocupaciones">
+        <img src="{{ url_for('static', filename='uploads/grafico2.png') }}" alt="Gráfico de actividades">
     </div>
 </body>
 </html>
