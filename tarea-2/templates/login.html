@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %} Portada - Mi App {% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/estilos_login.css') }}">
+{% endblock %}
+
+{% block content %}
+  <div class="login-container">
+    <h1> Inicio de sesión </h1>
+
+    {% if error %}
+      <div class="error-mensaje">
+        {{ error }}
+      </div>
+    {% endif %}
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+          <div class="error-mensaje">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <form id="form-login" action="/login" method="POST">
+
+      <div>
+        <label for="correo-usuario"> Correo:</label>
+        <input type="email" id="correo-usuario" name="correo">
+        <div class="error" id="error-correo"> Correo no válido o no registrado</div>
+      </div>
+      <br>
+
+      <div>
+        <label for="contraseña-usuario"> Contraseña:</label>
+        <input type="password" id="contraseña-usuario" name="contraseña">
+        <div class="error" id="error-contraseña"> La contraseña debe tener al menos 6 caracteres</div>
+      </div>
+      <br>
+ 
+      <button type="submit"> Entrar </button>
+
+      <div class="footer-form">
+        ¿No tienes una cuenta? <a href="{{ url_for('registro') }}">Regístrate aquí</a>
+      </div>
+
+      <hr>
+    </form>
+  </div>
+
+  <script src="{{ url_for('static', filename='utils/script_login.js') }}"></script>
+{% endblock %}

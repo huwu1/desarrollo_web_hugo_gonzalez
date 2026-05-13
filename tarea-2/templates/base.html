@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %} Mi App {% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilos_navbar.css') }}">
+  {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+    <div class="navbar">
+      <h1>ola</h1>
+      <a class="navbar-page" href="{{ url_for('bienvenida') }}">Inicio</a>
+      
+      <div class="navbar-session">
+
+        {% if session.get('usuario') %}
+          <div class="profile-dropdown">
+            <span class="navbar-username">{{ session['usuario'] }}</span>
+            <div class="dropdown-content">
+              <a href="{{ url_for('logout') }}">Cerrar sesión</a>
+          </div>
+        </div>
+        {% else %}
+          <a class="navbar-page" href="{{ url_for('login') }}">Iniciar sesión</a>
+        {% endif %}
+      </div>
+    </div>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+</body>
+</html>

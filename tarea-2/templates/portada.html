@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %} Portada - Mi App {% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/estilos_portada.css') }}">
+{% endblock %}
+
+{% block content %}
+    <h1> ¡Bienvenido! </h1>
+    <div class="menu">     
+        <a id="registro" href="{{url_for('registro')}}"> Registrarse </a>
+        <a id="login" href="{{url_for('login')}}"> ¿Ya eres miembro? </a>
+        <a id="registro-actividad" href="{{url_for('actividades')}}"> Registrar actividad </a>
+        <a id="ver-miembros" href="{{url_for('miembros')}}"> Ver listado de miembros </a>
+        <a id="ver-estadisticas" href="{{url_for('estadisticas')}}"> Ver estadísticas </a>
+    </div>
+
+{% endblock %}
+
+

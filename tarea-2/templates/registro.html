@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block title %} Portada - Mi App {% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/estilos_registro.css') }}">
+{% endblock %}
+
+{% block content %}
+  <div class="register-container">
+    <h1> Registro de usuario </h1>
+
+      {% if error %}
+        <div class="error-mensaje">
+          {{ error }}
+        </div>
+      {% endif %}
+
+      <form id = "form-registro" method="POST">
+
+        <div>
+          <label for="nombre-usuario"> Nombre y apellido:</label>
+          <input type="text" id="nombre-usuario" name="nombre-usuario" placeholder="ej: Juan Pérez">
+          <div class="error" id="error-nombre"> Debes ingresar un nombre válido</div>
+        </div>
+        <br>
+
+        <div>
+          <label for="rut-usuario"> RUT:</label>
+          <input type="text" id="rut-usuario" name="rut-usuario" placeholder="formato 12.345.678-9">
+          <div class="error" id="error-rut"> Debes ingresar un RUT válido</div>
+        </div>
+        <br>
+
+        <!-- input type 'email' como primera línea de verificación -->
+        <div>
+          <label for="correo-usuario"> Correo:</label>
+          <input type="email" id="correo-usuario" name="correo-usuario">
+          <div class="error" id="error-correo"> Debes ingresar un correo válido</div>
+        </div>
+        <br>
+
+        <div>
+          <label for="contraseña-usuario"> Contraseña:</label>
+          <input type="password" id="contraseña-usuario" name="contraseña-usuario">
+          <div class="error" id="error-contraseña"> El largo de la contraseña debe ser de al menos 6 carácteres</div>
+        </div>
+
+        <label for="tipo-usuario"> Cargo u ocupación:</label>
+        <select id="tipo-usuario" name="tipo-usuario">
+          <option value=""> -- Seleccione --</option>
+          <option value="Estudiante"> Estudiante </option>
+          <option value="Profesor"> Profesor </option>
+          <option value="Funcionario"> Funcionario </option>
+        </select>
+        <div class="error" id="error-tipo-usuario"> Debe seleccionar un tipo</div>
+        <br>
+        
+        <div id="bloque-funcionarios">
+          <label for="tipo-funcionario"> Tipo de funcionario:</label>
+          <select id="tipo-funcionario">
+            <option value=""> -- Seleccione --</option>
+            <option value="aseo"> Aseo </option>
+            <option value="mantención"> Mantención </option>
+            <option value="logistica"> Logística </option>
+            <option value="administracion"> Administración </option>
+          </select>
+          <div class="error" id="error-tipo-funcionario"> Debe seleccionar un tipo</div>
+        </div>
+        <br>
+
+        <button type="submit"> Registrarse</button>
+
+        <hr>
+
+      </form>
+    </div>
+
+  <script src="{{ url_for('static', filename='utils/script_registro.js') }}"></script> 
+  
+{% endblock %}
