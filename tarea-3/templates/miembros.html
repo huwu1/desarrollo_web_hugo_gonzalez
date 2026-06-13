@@ -51,7 +51,7 @@
                       <p><small>Registrado el: {{ actividad.fecha_registro_actividad }}</small></p>
 
                       <div class="lista-comentarios" id="lista-comentarios-{{ actividad.id }}">
-                      <h4>Comentarios (<span id="contador-comentarios-{{ actividad.id }}">{{ actividad.comentarios|length }}</span>):</h4>
+                      <h3>Comentarios (<span id="contador-comentarios-{{ actividad.id }}">{{ actividad.comentarios|length }}</span>):</h3>
 
                       {% if actividad.comentarios %}
                         {% for c in actividad.comentarios %}
