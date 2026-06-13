@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %} Métricas {% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/estilos_metricas.css') }}">
+{% endblock %}
+
+{% block content %}
+  <h1>Visualización de Métricas</h1>
+  <div class="contenedor-graficos">
+
+    <figure class="highcharts-figure">
+      <div id="container-dias"></div> <!-- como en el aux -->
+    </figure>
+
+    <figure class="highcharts-figure">
+      <div id="container-keke"></div> <!-- como en el aux -->
+    </figure>
+
+    <figure class="highcharts-figure">
+      <div id="container-comuna"></div> <!-- como en el aux -->
+    </figure>
+
+  </div>
+
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="{{ url_for('static', filename='utils/script_metricas.js') }}"></script>
+{% endblock %}

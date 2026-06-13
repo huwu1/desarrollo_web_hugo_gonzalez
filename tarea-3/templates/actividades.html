@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %} Portada - Mi App {% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/estilos_actividades.css') }}">
+{% endblock %}
+
+{% block content %}
+  <h1> Registro de actividad </h1>
+  
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div class="contenedor-mensajes">
+        {% for category, message in messages %}
+          <div class="alerta alerta-{{ category }}">
+            {{ message }}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+
+  <form id="form-actividad" method="POST" enctype="multipart/form-data">
+    <label for="nombre-actividad">Nombre de la actividad:</label><br>
+    <input type="text" id="nombre-actividad" name="nombre-actividad">
+    <div class="error" id="error-nombre">Debe ingresar un nombre (mínimo 3 caracteres).</div>
+    <br>
+
+    <label for="tipo-actividad">Tipo:</label><br>
+    <select id="tipo-actividad" name="tipo-actividad">
+      <option value="">-- Seleccione --</option>
+      <option value="Deportiva">Deportiva</option>
+      <option value="Artística">Artística</option>
+      <option value="Tecnologica">Tecnológica</option>
+      <option value="Social">Social</option>
+      <option value="Recreativa">Recreativa</option>
+    </select>
+    <div class="error" id="error-tipo">Debe seleccionar un tipo.</div>
+    <br>
+
+
+    <label>Dias donde se realizó la actividad:</label>
+    <label><input type="checkbox" name="dias-actividad" value="Lunes"> Lunes </label>
+    <label><input type="checkbox" name="dias-actividad" value="Martes"> Martes </label>
+    <label><input type="checkbox" name="dias-actividad" value="Miércoles"> Miércoles </label>
+    <label><input type="checkbox" name="dias-actividad" value="Jueves"> Jueves </label>
+    <label><input type="checkbox" name="dias-actividad" value="Viernes"> Viernes </label>
+    <div class="error" id="error-dias"> Debe seleccionar al menos un día</div>
+
+
+    <label for="horas-actividad">Horas semanales dedicadas:</label><br>
+    <input type="number" id="horas-actividad" name = "horas-actividad" min="1">
+    <div class="error" id="error-horas">Debe ingresar un número mayor a 0</div>
+    <br>
+
+
+    <label>Adjunta tu archivo (como máximo uno):</label>
+    <input type="file" id="archivo-actividad" name="archivo-actividad">
+    <div class="error" id="error-archivo"> Debe incluir por lo menos un archivo, ya sea foto o video</div>
+
+    <label for="link-actividad">Ingresa un enlace:</label>
+    <input type="url" id="link-actividad" name="link-actividad">
+    <div class="error" id="error-link">Debe incluir al menos un enlace</div>
+
+
+
+    <button type="submit">Agregar actividad</button>
+
+    <div class="menu-actividades">
+      <a id="boton-miembros" href="{{url_for('miembros')}}">Ver miembros registrados</a>
+      <a id="boton-metricas" href="{{url_for('estadisticas')}}">Ver gráfica de datos</a>
+    </div>
+
+  </form>
+
+  <hr>
+
+  <script src="{{ url_for('static', filename='utils/script_actividades.js') }}"></script>
+{% endblock %}

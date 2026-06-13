@@ -1,0 +1,8 @@
+-- Active: 1781146298096@@127.0.0.1@3306@tarea3
+DROP DATABASE IF EXISTS tarea3;
+
+DROP TABLE miembros;
+
+DROP TABLE fotos;
+
+DROP TABLE actividades;

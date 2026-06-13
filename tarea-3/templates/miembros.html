@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+
+{% block title %} Miembros - Mi App {% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/estilos_miembros.css') }}">
+{% endblock %}
+
+{% block content %}
+  <h1> Miembros registrados </h1> 
+
+  <input type="text" id="input-busqueda" onkeyup="barraBusqueda()" placeholder="Buscar coincidencias de RUT..." title="Type in a name"> 
+  
+  <table id="tabla-miembros">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>RUT</th>
+        <th>Ocupación</th>
+        <th>Acción</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in datos %}
+        <tr class="fila-miembro">
+          <td>{{ item.info.nombre_apellido }}</td>
+          <td>{{ item.info.rut }}</td>
+          <td>{{ item.info.cargo }}</td>
+          <td>
+            <button type="button" onclick="toggleDetalles('{{ item.info.id }}')">Ver / Ocultar</button>
+          </td>
+        </tr>
+
+        <tr id="detalles-{{ item.info.id }}" style="display: none; background-color: #f9f9f9;">
+          <td colspan="4" style="padding: 20px; border: 1px solid #ddd;">
+            <div class="info-expandida">
+              <p><strong>Correo de contacto:</strong> {{ item.info.correo }}</p>
+              <hr>
+              <h2>Actividades Registradas ({{ item.actividades|length }})</h2>
+              
+              {% if item.actividades %}
+                <div class="lista-actividades-miembro">
+                  {% for actividad in item.actividades %}
+                    <div class="actividad-item" style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;">
+                      <p><strong>Actividad:</strong> {{ actividad.nombre }} ({{ actividad.tipo }})</p>
+                      <p><strong>Días y horas:</strong> {{ actividad.dias }} - {{ actividad.horas }} hrs/sem</p>
+                      <p><a href="{{ actividad.enlace }}" target="_blank">Ver enlace web</a></p>
+                      <div class="foto-actividad">
+                        <img src="{{ url_for('static', filename='uploads/' ~ actividad.foto.nombre_archivo) }}" alt="Foto de la actividad" style="max-width: 250px; margin-top: 10px;">
+                      </div>
+                      <p><small>Registrado el: {{ actividad.fecha_registro_actividad }}</small></p>
+
+                      <div class="lista-comentarios" id="lista-comentarios-{{ actividad.id }}">
+                      <h4>Comentarios (<span id="contador-comentarios-{{ actividad.id }}">{{ actividad.comentarios|length }}</span>):</h4>
+
+                      {% if actividad.comentarios %}
+                        {% for c in actividad.comentarios %}
+                          <div class="comentario-item">
+                            <small>{{ c.fecha.strftime('%d-%m-%Y %H:%M') }} — <strong>{{ c.nombre }}</strong></small>
+                            <p>{{ c.texto }}</p>
+                          </div>
+                        {% endfor %}
+                      {% else %}
+                        <p id="sin-comentarios-{{ actividad.id }}">Sin comentarios aún.</p>
+                      {% endif %}
+                    </div>
+
+                      <form id="form-comentario-{{ actividad.id }}" 
+                        method="POST" 
+                        action="{{ url_for('agregar_comentario', actividad_id=actividad.id) }}"
+                        onsubmit="return validarComentario('{{ actividad.id }}')">
+
+                        <p><strong>Añade un comentario:</strong></p>
+
+                        <div>
+                          <label for="nombre-comentarista-{{ actividad.id }}">Nombre:</label>
+                          <input type="text" 
+                            id="nombre-comentarista-{{ actividad.id }}" 
+                            name="nombre-comentarista" 
+                            placeholder="ej: Juan Pérez">
+                          <div class="error" id="error-comentarista-{{ actividad.id }}">
+                            Debes ingresar un nombre válido (3-80 caracteres)
+                          </div>
+                        </div>
+
+                        <div>
+                          <label for="comentario-{{ actividad.id }}">Comentario:</label>
+                          <textarea id="comentario-{{ actividad.id }}" 
+                            name="comentario" 
+                            rows="4" cols="50"></textarea>
+                          <div class="error" id="error-comentario-{{ actividad.id }}">
+                            Debes ingresar un comentario con al menos 5 caracteres
+                          </div>
+                        </div>
+
+                        <button type="submit">Agregar comentario</button>
+                        <div id="msg-comentario-{{ actividad.id }}" style="display:none"></div>
+                      </form>
+                    </div>
+                  {% endfor %}
+                </div>
+              {% else %}
+                <p>Este miembro aún no ha registrado actividades.</p>
+              {% endif %}
+            </div>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table> 
+    
+  <div id="paginas-miembros">
+    <button id="pagina-anterior"> Anterior </button>
+    <button id="pagina-siguiente"> Siguiente </button>
+  </div>
+
+  <script src="{{ url_for('static', filename='utils/script_miembros.js') }}"></script>
+  <script>
+    function toggleDetalles(id) {
+      var filaDetalles = document.getElementById("detalles-" + id);
+      if (filaDetalles.style.display === "none") {
+        filaDetalles.style.display = "table-row";
+      } else {
+        filaDetalles.style.display = "none";
+      }
+    }
+  </script>
+{% endblock %}
