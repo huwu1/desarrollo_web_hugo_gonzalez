@@ -32,3 +32,5 @@ Algo que olvidé mencionar en la entrega pasada es que la URL base de la tarea e
 ```text
 http://127.0.0.1:5000/bienvenida
 ```
+
+Detallito: me aparecía un error de text-align="center" que no cache por qué salía, al parecer era por Highcharts para los gráficos. No supe solucionarlo.
