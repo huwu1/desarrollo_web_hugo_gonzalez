@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang=es xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Miembros - Mi App</title>
+    <link rel="stylesheet" th:href="@{/css/estilos_miembros.css}">
+</head>
+<body>
+  <h1> Buscador en Vivo </h1> 
+
+  <div class="contenedor-resultados">
+    <label for="buscador-input">Buscar Actividad (Mínimo 3 letras):</label>
+    <input type="text" id="buscador-input" placeholder="Ej: Quilicura, Taller, etc...">
+    <div id="resultados-container"></div>
+  </div>
+
+  <!--<input type="text" id="input-busqueda" onkeyup="barraBusqueda()" placeholder="Buscar coincidencias de RUT..."> -->
+  
+<table id="tabla-miembros">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>RUT</th>
+        <th>Ocupación</th>
+        <th>Actividades Inscritas</th> </tr>
+    </thead>
+    <tbody>
+      <tr class="fila-miembro" th:each="item : ${datos}">
+        <td th:text="${item.nombreApellido}"></td>
+        <td th:text="${item.rut}"></td>
+        <td th:text="${item.cargo}"></td>
+        <td>
+          <ul style="margin: 0; padding-left: 20px;">
+            <li th:each="act : ${item.actividades}" 
+                th:text="${act.nombre}">
+            </li>
+            <li th:if="${#lists.isEmpty(item.actividades)}" 
+                style="color: #888; list-style-type: none; margin-left: -20px;">
+                Sin actividades registradas
+            </li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+    
+  <script th:src="@{/js/ola.js}"></script>
+</body>
+</html>
