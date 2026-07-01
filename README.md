@@ -1,36 +1,25 @@
-# Hola
+# ola
 
 ## Instalación de dependencias
 
-Antes que nada, se deben descargar los requerimientos necesarios a través del siguiente comando:
+Antes de comenzar, se recomienda crear un entorno virtual a la altura del directorio de la tarea. Una vez creado, mediante el siguiente comando pueden instalar las dependencias necesarias para ejecutar la tarea (`sqlalchemy` y `pymysql`).
 
 ```bash
-pip install -r requirements.txt
+pip install sqlalchemy pymysql
 ```
+
+---
 
 ## Ejecución
 
-Ahora funciona el `init_db.py`, el orden para ejecutar el código es:
+Se reutilizó el `init_db.py` de la tarea pasada, con el atributo **Nota** añadido para la creación de datos falsos.
 
-1. Dentro de la carpeta `database`, correr `init_db.py`.
-2. Dentro del directorio `tarea-3`, ejecutar el siguiente comando dentro de la terminal:
+1. Dentro de la carpeta `database`, ejecutar `init_db.py`.
 
-```bash
-flask run
-```
+Y listo. `init_db.py` se encarga de generar **12 datos deliberadamente falsos** con el fin de poder probar las funcionalidades solicitadas, como la funcionalidad del buscador además de las notas.
 
-Y listo, `init_db.py` se encarga de generar 12 datos deliberadamente falsos con fin de poder probar las funcionalidades solicitadas, como la generación de gráficos además que aparezcan personas dentro de los miembros registrados (las fotos de cada uno de estos son archivos falsos inaccesibles).
-
-## Cambios realizados
-
-Por conveniencia decidí eliminar la opción de ordenar alfabéticamente y por ocupación (tiempo).
-
-## URL base
-
-Algo que olvidé mencionar en la entrega pasada es que la URL base de la tarea es:
+Posteriormente, ubicándose en `src/main/java/`, se puede encontrar el archivo `T4Application.java`. Al ejecutarlo mediante la flecha ubicada en la parte superior derecha del IDE, se levantará la aplicación, la cual estará disponible en la siguiente dirección:
 
 ```text
-http://127.0.0.1:5000/bienvenida
+http://localhost:8080
 ```
-
-Detallito: me aparecía un error de text-align="center"  con el verificador de html para la sección de "métricas" que no cache por qué salía, al parecer era por Highcharts para los gráficos. No supe solucionarlo.
